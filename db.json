@@ -1,0 +1,13 @@
+{
+  "users": [],
+  "articles": [
+    {
+      "id": 5,
+      "src": "pic05.jpg",
+      "alt": "Halte !",
+      "titre": "Nouvel Article",
+      "description": "Description",
+      "lien": "Lien"
+    }
+  ]
+}
