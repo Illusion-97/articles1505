@@ -1,0 +1,3 @@
+<div class="h-full w-full flex flex-wrap gap-3 p-5">
+    <app-card [user]="user" (userDeleted)="getAll()" *ngFor="let user of users | async"/>
+</div>

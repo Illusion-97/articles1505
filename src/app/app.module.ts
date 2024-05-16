@@ -9,6 +9,7 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import { WaiterComponent } from './components/waiter/waiter.component';
 import { CursorInterceptor } from 'src/common/interceptors/cursor.interceptor';
 import { BackendInterceptor } from 'src/common/interceptors/backend.interceptor';
+import { AuthModule } from 'src/users/auth/auth.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { BackendInterceptor } from 'src/common/interceptors/backend.interceptor'
   imports: [
     BrowserModule,
     HttpClientModule,
+    AuthModule,
     AppRoutingModule // Conserver ce module en dernier pour eviter des erreur de routage si présence d'un path: "**"
   ],
   providers: [

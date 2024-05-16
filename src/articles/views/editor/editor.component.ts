@@ -4,13 +4,14 @@ import { ActivatedRoute, ActivatedRouteSnapshot, ResolveFn, Router, RouterStateS
 import { Subscription, catchError, finalize, of, throwError } from 'rxjs';
 import { Article } from 'src/articles/models/article';
 import { ArticlesService } from 'src/articles/services/articles.service';
+import { AbstractFormComponent } from 'src/common/components/abstract-form.component';
 
 @Component({
   selector: 'app-editor',
   templateUrl: './editor.component.html',
   styleUrls: ['./editor.component.css']
 })
-export class EditorComponent {
+export class EditorComponent extends AbstractFormComponent {
 
   form: FormGroup = new FormGroup({
     id: new FormControl(0),
@@ -22,17 +23,11 @@ export class EditorComponent {
   })
 
   constructor(private service: ArticlesService, private router: Router, route: ActivatedRoute) {
+    super()
     route.data.subscribe(({article}) => {
       if (article) this.form.patchValue(article)
       else this.form.reset()
     })
-  }
-
-  onSubmit() {
-    this.form.markAllAsTouched()
-    if (this.form.valid) {
-      this.onSubmit$();
-    }
   }
 
   onSubmit$() {

@@ -1,5 +1,12 @@
 {
-  "users": [],
+  "users": [
+    {
+      "email": "yanis@dawan.fr",
+      "password": "$2a$10$e9ke4RRfO1s4m7qcBSRrFeMFFDip0T7FjviqdwH6rTQBCZQ8m6IWC",
+      "id": 1,
+      "username": "Yanis"
+    }
+  ],
   "articles": [
     {
       "id": 5,
