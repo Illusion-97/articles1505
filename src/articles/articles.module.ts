@@ -1,10 +1,12 @@
 import { NgModule, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ListComponent } from './views/list/list.component';
-import { RouterModule, Routes } from '@angular/router';
+import { ActivatedRouteSnapshot, Router, RouterModule, RouterStateSnapshot, Routes } from '@angular/router';
 import { CardComponent } from './components/card/card.component';
 import { ArticlesService } from './services/articles.service';
-import { EditorComponent } from './views/editor/editor.component';
+import { EditorComponent, editorResolver } from './views/editor/editor.component';
+import { catchError, of, throwError } from 'rxjs';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const routes : Routes = [
   {
@@ -20,7 +22,10 @@ const routes : Routes = [
   },
   {
     path: 'editor/:id',
-    component: EditorComponent
+    component: EditorComponent,
+    resolve: {
+      article: editorResolver
+    }
   }
 ]
 
@@ -32,6 +37,7 @@ const routes : Routes = [
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     RouterModule.forChild(routes)
   ]
 })

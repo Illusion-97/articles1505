@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Subscription, finalize } from 'rxjs';
+import { ActivatedRoute, ActivatedRouteSnapshot, ResolveFn, Router, RouterStateSnapshot } from '@angular/router';
+import { Subscription, catchError, finalize, of, throwError } from 'rxjs';
+import { Article } from 'src/articles/models/article';
 import { ArticlesService } from 'src/articles/services/articles.service';
 
 @Component({
@@ -21,7 +22,10 @@ export class EditorComponent {
   })
 
   constructor(private service: ArticlesService, private router: Router, route: ActivatedRoute) {
-
+    route.data.subscribe(({article}) => {
+      if (article) this.form.patchValue(article)
+      else this.form.reset()
+    })
   }
 
   onSubmit() {
@@ -36,4 +40,15 @@ export class EditorComponent {
     const s : Subscription = observable.pipe(finalize(() => s.unsubscribe()))
     .subscribe(() => this.router.navigate(['/articles']))
   }
+}
+
+export const editorResolver : ResolveFn<Article | undefined> = (route) => {
+  const id : number = +(route.paramMap.get('id') ?? "0")
+  const router = inject(Router)
+  return id 
+  ? inject(ArticlesService).byId(id).pipe(catchError(err => {
+    router.navigate(['/articles/editor/0'])
+    return throwError(() => err)
+  })) 
+  : of(undefined)
 }
