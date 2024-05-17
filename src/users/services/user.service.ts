@@ -8,7 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class UserService extends GenericService<User> {
 
-  readonly ENDPOINT: string = "/users";
+  readonly ENDPOINT: string = "/664/users";
 
   constructor(http: HttpClient) {
     super(http)

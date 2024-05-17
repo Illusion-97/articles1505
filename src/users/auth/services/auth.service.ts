@@ -21,6 +21,14 @@ export class AuthService {
     return this.authResponse.value?.user
   }
 
+  get currentRole(): string {
+    return this.currentUser?.role ?? "PUBLIC"
+  }
+
+  get isAdmin() : boolean {
+    return this.currentRole === "ADMIN"
+  }
+
   get token(): string | undefined {
     return this.authResponse.value?.accessToken
   }
@@ -63,10 +71,19 @@ export class AuthService {
 
   logout() {
     this.authResponse.next(undefined)
-    this.router.navigate(['/login'])
+    this.router.navigate(['/'])
   }
 }
 
 export const authGuard: CanActivateFn = () => {
   return inject(AuthService).isLogged || inject(Router).createUrlTree(['/login'])
+}
+
+export const adminGuard: CanActivateFn = () => {
+  const isAdmin = inject(AuthService).isAdmin;
+  if(isAdmin) return true;
+  else {
+    alert("Vous n'avez pas les droits d'accès nécessaires")
+    return inject(Router).createUrlTree(['/'])
+  }
 }

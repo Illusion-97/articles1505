@@ -10,7 +10,7 @@ import { GenericService } from 'src/common/services/generic-service';
 })
 export class ArticlesService extends GenericService<Article> {
 
-  readonly ENDPOINT : string = "/articles"
+  readonly ENDPOINT : string = "/664/articles"
 
   constructor(http : HttpClient) {
     super(http) // appel au constructeur parent

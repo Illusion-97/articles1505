@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent extends AbstractFormComponent {
-  
+
   form: FormGroup = new FormGroup({
     email: new FormControl("", {validators: [Validators.required]}),
     password: new FormControl("", {validators: [Validators.required]}),
@@ -21,10 +21,10 @@ export class LoginComponent extends AbstractFormComponent {
   }
 
   onSubmit$(): void {
-    this.service.login(this.form.value).subscribe(() => this.router.navigate(['/articles']))
+    this.service.login(this.form.value).subscribe(() => this.router.navigate(['/']))
   }
 
-  
+
   setRemeber(inputEvent: Event) {
     //@ts-ignore
     this.service.remember = inputEvent.target.checked

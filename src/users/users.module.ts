@@ -4,6 +4,7 @@ import { ListComponent } from './views/list/list.component';
 import { RouterModule, Routes } from '@angular/router';
 import { UserService } from './services/user.service';
 import { CardComponent } from './components/card/card.component';
+import { SharedModule } from 'src/common/common.module';
 
 const routes: Routes = [
   {
@@ -22,6 +23,7 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
+    SharedModule,
     RouterModule.forChild(routes)
   ]
 })

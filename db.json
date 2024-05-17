@@ -5,6 +5,13 @@
       "password": "$2a$10$e9ke4RRfO1s4m7qcBSRrFeMFFDip0T7FjviqdwH6rTQBCZQ8m6IWC",
       "id": 1,
       "username": "Yanis"
+    },
+    {
+      "email": "admin@dawan.fr",
+      "password": "$2a$10$NqG5mLtZbha12eX/p8PbKu1b0M4KzpzWo0bz5AmMyswzq0h6rR2ku",
+      "id": 2,
+      "username": "Le Fameux Toto",
+      "role": "ADMIN"
     }
   ],
   "articles": [
@@ -23,6 +30,14 @@
       "titre": "Titre Modifié",
       "description": "Descr",
       "lien": "Lien"
+    },
+    {
+      "id": 7,
+      "src": "pic",
+      "alt": "test",
+      "titre": "JenkinsMvc",
+      "description": "azerty",
+      "lien": "pic"
     }
   ]
 }

@@ -1,7 +1,8 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import { HomeComponent } from './views/home/home.component';
-import { authGuard } from 'src/users/auth/services/auth.service';
+import { adminGuard, authGuard } from 'src/users/auth/services/auth.service';
+import {NotFoundComponent} from "./views/not-found/not-found.component";
 
 const routes: Routes = [
   {
@@ -10,11 +11,12 @@ const routes: Routes = [
   },
   {
     path: "articles",
+    canMatch: [authGuard], // Fonctionne comme canActivate tout en empêchant le chargement d'un module
     loadChildren: () => import('src/articles/articles.module').then(m => m.ArticlesModule)
   },
   {
     path: "users",
-    canActivate: [authGuard],
+    canActivate: [authGuard, adminGuard],
     loadChildren: () => import('src/users/users.module').then(m => m.UsersModule)
   },
   {

@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, ActivatedRouteSnapshot, ResolveFn, Router, RouterStateSnapshot } from '@angular/router';
-import { Subscription, catchError, finalize, of, throwError } from 'rxjs';
+import { Subscription, catchError, finalize, first, of, throwError } from 'rxjs';
 import { Article } from 'src/articles/models/article';
 import { ArticlesService } from 'src/articles/services/articles.service';
 import { AbstractFormComponent } from 'src/common/components/abstract-form.component';
@@ -32,7 +32,8 @@ export class EditorComponent extends AbstractFormComponent {
 
   onSubmit$() {
     const observable = this.form.value.id ? this.service.update(this.form.value) : this.service.save(this.form.value)
-    const s : Subscription = observable.pipe(finalize(() => s.unsubscribe()))
+    //const s : Subscription = observable.pipe(finalize(() => s.unsubscribe()))
+    observable.pipe(first())
     .subscribe(() => this.router.navigate(['/articles']))
   }
 }

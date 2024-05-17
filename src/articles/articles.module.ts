@@ -7,6 +7,9 @@ import { ArticlesService } from './services/articles.service';
 import { EditorComponent, editorResolver } from './views/editor/editor.component';
 import { catchError, of, throwError } from 'rxjs';
 import { ReactiveFormsModule } from '@angular/forms';
+import { StepperComponent } from 'src/common/components/stepper/stepper.component';
+import { StepComponent } from 'src/common/components/stepper/step/step.component';
+import { SharedModule } from 'src/common/common.module';
 
 const routes : Routes = [
   {
@@ -37,6 +40,7 @@ const routes : Routes = [
   ],
   imports: [
     CommonModule,
+    SharedModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes)
   ]
