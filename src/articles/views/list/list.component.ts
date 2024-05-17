@@ -29,4 +29,8 @@ export class ListComponent {
   getAll() {
     this.articles = this.service.all()
   }
+
+  getText(): string {
+    return "Hello"
+  }
 }
